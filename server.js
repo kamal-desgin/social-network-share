@@ -63,7 +63,7 @@ http.listen(3000, function(){
 							"email": email,
 							"password": hash,
 							"profileImage": "",
-							"coverPhot": "",
+							"coverPhoto": "",
 							"dob": "",
 							"city": "",
 							"country": "",
@@ -166,7 +166,7 @@ http.listen(3000, function(){
 			result.redirect("/login");
 		});
 		
-		//profile update
+		//profile cover photo update
 		app.post("/uploadCoverPhoto", function(request, result){
 			var accessToken = request.fields.accessToken;
 			var coverPhoto = "";
@@ -215,7 +215,53 @@ http.listen(3000, function(){
 			});			
 		});
 		
-	
+		//profile image update
+		app.post("/uploadProfileImage", function(request, result){
+			var accessToken = request.fields.accessToken;
+			var profileImage = "";
+			
+			database.collection("users").findOne({
+				"accessToken": accessToken
+			}, function(error, user){
+				if(user == null){
+					result.json({
+						"status": "error",
+						"message": "User has been logged out. Please login  again."
+					});
+				} else {
+					if(request.files.profileImage.size > 0 && request.files.profileImage.type.includes("image")){
+						//previous cover photo remove
+						if(user.profileImage != ""){
+							fileSystem.unlink(user.profileImage, function(error){
+								
+							});
+						}
+						profileImage = "public/images/" + new Date().getTime() + "-" + request.files.profileImage.name;
+						fileSystem.rename(request.files.profileImage.path, profileImage, function(error){
+							
+						});
+						database.collection("users").updateOne({
+								"accessToken": accessToken
+							}, {
+								$set: {
+									"profileImage": profileImage
+								}
+						}, function(error, data){
+							result.json({
+								"status": "status",
+								"message": "Profile image has been updated.",
+								data: mainURL + "/" + profileImage
+							});
+						});							
+					} else {
+						result.json({
+							"status": "error",
+							"message": "Please select valid image."
+						});
+					}
+				}
+			});			
+		});
 		
 	});
 });
