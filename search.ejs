@@ -219,15 +219,17 @@
 			if(this.readyState == 4 && this.status == 200){
 				var response = JSON.parse(this.responseText);
 				
-				if(respnse.status == "success"){
+				if(response.status == "success"){
 					self.className = "add-butn btn-unfriend";
 					self.innerHTML = "Leave";
+					alert(response.message);
 				}
-				if(respnse.status == "leaved"){
+				if(response.status == "leaved"){
 					self.className = "add-butn";
 					self.innerHTML = "Join";
+					alert(response.message);
 				}
-				if(respnse.status == "error"){
+				if(response.status == "error"){
 					alert(response.message);
 				}			
 			}
@@ -251,11 +253,13 @@
 				if(response.status == "success"){
 					self.className = "add-butn btn-unfriend",
 					self.innerHTML = "Unlike";
+					alert(response.message);
 				}
 				
 				if(response.status == "unliked"){
 					self.className = "add-butn",
 					self.innerHTML = "Like";
+					alert(response.message);
 				}
 				
 				if(response.status == "error"){

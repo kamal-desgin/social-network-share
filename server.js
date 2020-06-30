@@ -947,26 +947,7 @@ http.listen(3000, function(){
 		});
 		
 		
-		/* post-user-id:"5edcbf1db6d678158c9a0ddd",
-		    post-id:"5ef0214368d0602018f8c07d"
-	
-	5edcbf1db6d678158c9a0ddd //user-id
-	5eed7b9f866eff3d200c32ed //post-id
-	
-	alert('post-user-id:' + JSON.stringify(response.post_user_id));
-	alert('post-id:' + JSON.stringify(response.post_id));
-	"post_user_id": user._id, //check userid
-	"post_id":  post._id, //check postid
-	
-	
-				var username = [];
-				username.push(user.name); 				
-				database.collection("posts").find({					
-					"user._id": {
-						$in: ids
-					}
-				})
-	*/
+		
 		//friend Request send
 		app.post("/sendFriendRequest", function(request, result){
 			var accessToken = request.fields.accessToken;
@@ -1066,7 +1047,7 @@ http.listen(3000, function(){
 									"notifications": {
 										"_id": ObjectId(),
 										"type": "friend_request_accepted",
-										"content": me.name + "accepted your friend request.",
+										"content": me.name + " accepted your friend request.",
 										"profileImage": me.profileImage,
 										"createdAt": new Date().getTime()
 									}
@@ -1987,3 +1968,45 @@ http.listen(3000, function(){
 		});		
 	});
 
+
+/* post-user-id:"5edcbf1db6d678158c9a0ddd",
+		    post-id:"5ef0214368d0602018f8c07d"
+	
+	5edcbf1db6d678158c9a0ddd //user-id
+	5eed7b9f866eff3d200c32ed //post-id
+	
+	alert('post-user-id:' + JSON.stringify(response.post_user_id));
+	alert('post-id:' + JSON.stringify(response.post_id));
+	"post_user_id": user._id, //check userid
+	"post_id":  post._id, //check postid
+	
+	
+				var username = [];
+				username.push(user.name); 				
+				database.collection("posts").find({					
+					"user._id": {
+						$in: ids
+					}
+				})
+	*/
+
+/*
+
+post-user-id:[{
+	"_id":"5ef9d6ede8dcb10fd8f23305",
+	"type":"friend_request_accepted",
+	"content":"KAMAL.M accepted your friend request.",	"profileImage":"public/images/1592036592678-Untitled-3a.jpg",
+	"createdAt":1593431789698},
+	{"_id":"5ef5650a57ffd13f0c88b440",
+	"type":"friend_request_accepted",
+	"content":"KAMAL.Maccepted your friend request.",
+	"profileImage":"public/images/1592036592678-Untitled-3a.jpg",
+	"createdAt":1593140490705},
+		{"_id":"5ef564a357ffd13f0c88b43f",
+		"type":"friend_request_accepted",
+		"content":"KAMAL.Maccepted your friend request.",
+		"profileImage":"public/images/1592036592678-Untitled-3a.jpg",
+		"createdAt":1593140387053
+	}]
+
+ */
