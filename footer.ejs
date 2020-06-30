@@ -65,6 +65,30 @@
 							if(typeof isFriends !== "undefined" && isFriends){
 								showFriends();
 							}
+							
+							//pages get
+							if(typeof isPages !== "undefined" && isPages){
+								getPages();
+							}
+							//get single page created  id
+							if(typeof isPageDetail !== "undefined" && isPageDetail){
+								getPageDetail();
+							}
+							if(typeof isRightSidebar !== "undefined" && isRightSidebar){
+								getMyPages();
+							}
+							
+							//create Groups
+							if(typeof isGroups !== "undefined" && isGroups){
+								getGroups();
+							}
+							if(typeof isGroupDetails !== "undefined" && isGroupDetails){
+								getGroupDetails();
+							}
+							if(typeof isNotifications !== "undefined" && isNotifications){
+								showNotification();
+							}
+							
 								
 						} else {
 							alert(response.message);
